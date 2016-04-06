@@ -16,10 +16,18 @@ public enum Figure {
      * @return char symbol of figure
      */
     public char toChar() {
-        if (this.name().equals("x")) {
+        if (this == Figure.X) {
             return 'x';
         } else {
             return 'O';
+        }
+    }
+
+    public Figure opposite() {
+        if (this == Figure.X) {
+            return Figure.O;
+        } else {
+            return Figure.X;
         }
     }
 }

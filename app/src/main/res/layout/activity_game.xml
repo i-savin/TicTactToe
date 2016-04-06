@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"/>
     </TableRow>
 
-
     <TableRow android:id="@+id/first_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,15 +34,20 @@
             android:layout_width="67dp"
             android:layout_height="67dp"
             android:onClick="onMove"
+            android:id="@+id/cell_0_0"
             />
         <ImageView android:src="@drawable/empty"
             android:layout_width="67dp"
             android:layout_height="67dp"
-            android:onClick="onMove"/>
+            android:onClick="onMove"
+            android:id="@+id/cell_0_1"
+            />
         <ImageView android:src="@drawable/empty"
             android:layout_width="67dp"
             android:layout_height="67dp"
-            android:onClick="onMove"/>
+            android:onClick="onMove"
+            android:id="@+id/cell_0_2"
+            />
     </TableRow>
 
     <TableRow android:id="@+id/second_row"
@@ -54,17 +58,23 @@
         <ImageView android:src="@drawable/empty"
             android:layout_width="67dp"
             android:layout_height="67dp"
-            android:onClick="onMove"/>
+            android:onClick="onMove"
+            android:id="@+id/cell_1_0"
+            />
 
         <ImageView android:src="@drawable/empty"
             android:layout_width="67dp"
             android:layout_height="67dp"
-            android:onClick="onMove"/>
+            android:onClick="onMove"
+            android:id="@+id/cell_1_1"
+            />
 
         <ImageView android:src="@drawable/empty"
             android:layout_width="67dp"
             android:layout_height="67dp"
-            android:onClick="onMove"/>
+            android:onClick="onMove"
+            android:id="@+id/cell_1_2"
+            />
     </TableRow>
 
     <TableRow android:id="@+id/third_row"
@@ -75,17 +85,23 @@
         <ImageView android:src="@drawable/empty"
             android:layout_width="67dp"
             android:layout_height="67dp"
-            android:onClick="onMove"/>
+            android:onClick="onMove"
+            android:id="@+id/cell_2_0"
+            />
 
         <ImageView android:src="@drawable/empty"
             android:layout_width="67dp"
             android:layout_height="67dp"
-            android:onClick="onMove"/>
+            android:onClick="onMove"
+            android:id="@+id/cell_2_1"
+            />
 
         <ImageView android:src="@drawable/empty"
             android:layout_width="67dp"
             android:layout_height="67dp"
-            android:onClick="onMove"/>
+            android:onClick="onMove"
+            android:id="@+id/cell_2_2"
+            />
     </TableRow>
 
 </LinearLayout>

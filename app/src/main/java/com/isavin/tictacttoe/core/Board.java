@@ -1,5 +1,9 @@
 package com.isavin.tictacttoe.core;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Class <code>Board</code> represents game field for current game.
  *
@@ -11,6 +15,17 @@ public class Board {
     
     private int fieldSize;
     private char[][] gameField;
+
+    public Board getNewState(Move move) {
+        Board newBoard = new Board();
+        for (int i = 0; i < fieldSize; i++) {
+            for (int j = 0; j < fieldSize; j++) {
+                newBoard.gameField[i][j] = gameField[i][j];
+            }
+        }
+        newBoard.gameField[move.getRow()][move.getColumn()] = move.getFigure().toChar();
+        return newBoard;
+    }
     
     /**
      * Initializes newly created <code>Board</code> object. Creates new 
@@ -27,6 +42,30 @@ public class Board {
             }
         }
     }
+
+    public List<Move> getAvailableMoves() {
+        List<Move> moves = new ArrayList<>();
+        for (int i = 0; i < gameField.length; i++) {
+            for (int j = 0; j < gameField.length; j++) {
+                if (gameField[i][j] == 'n') {
+                    moves.add(new Move(i, j));
+                }
+            }
+        }
+        return moves;
+    }
+
+    public int getAvailableMovesNumber() {
+        int result = 0;
+        for (int i = 0; i < gameField.length; i++) {
+            for (int j = 0; j < gameField.length; j++) {
+                if (gameField[i][j] == 'n') {
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
     
     /**
      * Method to change values on game field cells if made move is correct.
@@ -39,10 +78,10 @@ public class Board {
 	    int column = move.getColumn();
 	    Figure figure = move.getFigure();
 	    
-	    gameField[row][column] = figure.name().charAt(0);
+	    gameField[row][column] = figure.toChar();
 	}
-	
-	/**
+
+    /**
 	 * Return values of game field cell.
 	 *
 	 * @see Move

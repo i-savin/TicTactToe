@@ -1,4 +1,8 @@
-package com.isavin.tictacttoe.core;
+package com.isavin.tictacttoe.core.player;
+
+import com.isavin.tictacttoe.core.Board;
+import com.isavin.tictacttoe.core.Figure;
+import com.isavin.tictacttoe.core.Move;
 
 /**
  * Class <code>Player</code> represents abstract game player.
@@ -80,6 +84,31 @@ public abstract class Player {
     
     public void setMadeMove(boolean made) {
         this.madeMove = made;
+    }
+
+    /**
+     * Enumeration class <code>Status</code> represents player's status.
+     *
+     * @author Ilia Savin
+     * @version
+     */
+    public static enum Status {
+        /**
+         * Player got this status if he won the party.
+         */
+        WON,
+        /**
+         * Player got this status if the party finishes with draw.
+         */
+        DRAW,
+        /**
+         * Player got this status if he lost the party.
+         */
+        LOST,
+        /**
+         * This status indicates that party is not over and player may make move.
+         */
+        PLAYING;
     }
 }
 

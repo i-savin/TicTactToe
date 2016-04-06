@@ -1,5 +1,7 @@
 package com.isavin.tictacttoe.core;
 
+import com.isavin.tictacttoe.core.player.Player;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,7 +17,7 @@ public class Rules {
     private final Logger logger = Logger.getLogger("com.isavin.tictacttoe");
     private static final Figure FIRST_MOVE_FIGURE = Figure.X;
 
-    private Game game;
+    private GameSession game;
     private Figure firstMoveFigure;
     private int movesCount;
     
@@ -45,10 +47,13 @@ public class Rules {
      * @return true if move is correct and false if not.
      */
 	public boolean validate(Move move) {
+        if (game.isFinished()) {
+            return false;
+        }
 	    if (move == null) {
 	        if (movesCount == 9) {
-                game.getPlayers()[0].setStatus(Status.DRAW);
-                game.getPlayers()[1].setStatus(Status.DRAW);
+                game.getPlayers()[0].setStatus(Player.Status.DRAW);
+                game.getPlayers()[1].setStatus(Player.Status.DRAW);
                 game.finish();
                 return true;
 	        }
@@ -102,9 +107,8 @@ public class Rules {
 	 * continued. If game must be finish, method update players statuses,
 	 * calls game's <code>finish()</code> method.
 	 *
-	 * @see Status
-	 * @see Game#resetPlayersMoves()
-	 * @see Game#finish()
+	 * @see Player.Status
+	 * @see GameSession#finish()
 	 */
 	public void checkGameState() {
 	    if (won(Figure.X)) {
@@ -120,8 +124,8 @@ public class Rules {
 	    }
    
 	    if (movesCount == 9) {
-	        game.getPlayers()[0].setStatus(Status.DRAW);
-	        game.getPlayers()[1].setStatus(Status.DRAW);
+	        game.getPlayers()[0].setStatus(Player.Status.DRAW);
+	        game.getPlayers()[1].setStatus(Player.Status.DRAW);
 	        game.finish();
 	        return;
 	    }
@@ -129,7 +133,7 @@ public class Rules {
 	
 	private boolean won(Figure wonFigure) {
 	    char[][] field = game.getBoard().getGameField();
-	    char symbol = wonFigure.name().charAt(0);
+	    char symbol = wonFigure.toChar();
 	    
         if (field[1][1] == symbol) { 
             if(field[0][0] == symbol && field[2][2] == symbol) {
@@ -165,12 +169,12 @@ public class Rules {
         return false;
     }
     
-    private void updatePlayerStatus(Figure wonFigure, Player[] players) {
+    private void updatePlayerStatus(Figure wonFigure, Player... players) {
         for (int i = 0; i < players.length; i++) {
             if (players[i].getFigure() == wonFigure) {
-                players[i].setStatus(Status.WON);
+                players[i].setStatus(Player.Status.WON);
             } else {
-                players[i].setStatus(Status.LOST);
+                players[i].setStatus(Player.Status.LOST);
             }
         }
     }
@@ -178,9 +182,9 @@ public class Rules {
     /**
      * Set current <code>game</code> filed.
      * 
-     * @param game <code>Game</code> object to be set
+     * @param game <code>GameSession</code> object to be set
      */
-    public void setGame(Game game) {
+    public void setGame(GameSession game) {
         this.game = game;
     }
 }

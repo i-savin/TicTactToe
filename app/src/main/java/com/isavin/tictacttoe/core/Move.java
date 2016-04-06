@@ -24,6 +24,11 @@ public class Move {
 	    this.column = column;
 	    this.row = row;
 	}
+
+	public Move(int row, int column) {
+		this.column = column;
+		this.row = row;
+	}
 	
 	/**
 	 * Method to get current move figure.
@@ -51,7 +56,10 @@ public class Move {
 	public int getRow() {
 	    return this.row;
 	}
-	
+
+	public void setFigure(Figure figure) {
+		this.figure = figure;
+	}
 	/**
 	 * Return string representation of move.
 	 *
