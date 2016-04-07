@@ -1,4 +1,4 @@
-§package com.isavin.tictacttoe.core.player;
+package com.isavin.tictacttoe.core.player;
 
 import com.isavin.tictacttoe.core.Board;
 import com.isavin.tictacttoe.core.Figure;
@@ -21,52 +21,11 @@ public class ArtificialIntelligence extends Player {
 
     @Override
     public Move makeMove(Board board) {
-//        char[][] gameField = board.getGameField();
-//        int center = gameField.length / 2;
-//        if (gameField[center][center] == 'n') {
-//            return new Move(this.figure, center, center);
-//        }
-//
-//        if (gameField[center-1][center] == 'n') {
-//            return new Move(this.figure, center-1, center);
-//        }
-//
-//        if (gameField[center+1][center] == 'n') {
-//            return new Move(this.figure, center+1, center);
-//        }
-//
-//        if (gameField[center][center-1] == 'n') {
-//            return new Move(this.figure, center, center-1);
-//        }
-//
-//        if (gameField[center][center+1] == 'n') {
-//            return new Move(this.figure, center, center+1);
-//        }
-//
-//        for (int i = 0; i < gameField.length; i++) {
-//            for (int j = 0; j < gameField.length; j++) {
-//                if ((i + j) % 2 == 0) {
-//                    if (gameField[i][j] == 'n') {
-//                        return new Move(this.figure, i, j);
-//                    }
-//                }
-//            }
-//        }
-//
-//        for (int i = 0; i < gameField.length; i++) {
-//            for (int j = 0; j < gameField.length; j++) {
-//                if (gameField[i][j] == 'n') {
-//                    return new Move(this.figure, i, j);
-//                }
-//            }
-//        }
-//        return null;
         minimax(board, figure, 0);
         return choice;
     }
 
     private int minimax(Board board, Figure figure, int depth) {
-//        System.out.println("Current depth: " + depth);
         if (isTerminal(board, depth)) {
             return score(board, depth);
         }
@@ -77,7 +36,6 @@ public class ArtificialIntelligence extends Player {
             Move move = availableMoves.get(i);
             move.setFigure(figure);
             Board possibleBoard = board.getNewState(move);
-//            System.out.println("Possible board:\n" + possibleBoard);
             scores.add(minimax(possibleBoard, figure.opposite(), depth + 1));
             moves.add(move);
         }
@@ -108,7 +66,8 @@ public class ArtificialIntelligence extends Player {
     }
 
     private boolean isTerminal(Board board, int depth) {
-        return board.getAvailableMovesNumber() == 0 || depth == 8;
+        return won(board, figure) || won(board, figure.opposite()) 
+                || board.getAvailableMovesNumber() == 0 || depth == 8;
     }
 
     private int score(Board board, int depth) {
