@@ -11,6 +11,7 @@
     tools:context="com.isavin.tictacttoe.GameActivity"
     android:gravity="center"
     android:layout_gravity="center"
+    android:configChanges="keyboardHidden|orientation|screenSize"
     >
 
 
@@ -28,25 +29,32 @@
     <TableRow android:id="@+id/first_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        >
 
         <ImageView android:src="@drawable/empty"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:onClick="onMove"
             android:id="@+id/cell_0_0"
+            android:adjustViewBounds="true"
+            android:background="@drawable/cell_shape"
             />
         <ImageView android:src="@drawable/empty"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:onClick="onMove"
             android:id="@+id/cell_0_1"
+            android:adjustViewBounds="true"
+            android:background="@drawable/cell_shape"
             />
         <ImageView android:src="@drawable/empty"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:onClick="onMove"
             android:id="@+id/cell_0_2"
+            android:adjustViewBounds="true"
+            android:background="@drawable/cell_shape"
             />
     </TableRow>
 
@@ -56,24 +64,27 @@
         android:gravity="center_horizontal">
 
         <ImageView android:src="@drawable/empty"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:onClick="onMove"
             android:id="@+id/cell_1_0"
+            android:background="@drawable/cell_shape"
             />
 
         <ImageView android:src="@drawable/empty"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:onClick="onMove"
             android:id="@+id/cell_1_1"
+            android:background="@drawable/cell_shape"
             />
 
         <ImageView android:src="@drawable/empty"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:onClick="onMove"
             android:id="@+id/cell_1_2"
+            android:background="@drawable/cell_shape"
             />
     </TableRow>
 
@@ -83,24 +94,27 @@
         android:gravity="center_horizontal">
 
         <ImageView android:src="@drawable/empty"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:onClick="onMove"
             android:id="@+id/cell_2_0"
+            android:background="@drawable/cell_shape"
             />
 
         <ImageView android:src="@drawable/empty"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:onClick="onMove"
             android:id="@+id/cell_2_1"
+            android:background="@drawable/cell_shape"
             />
 
         <ImageView android:src="@drawable/empty"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:onClick="onMove"
             android:id="@+id/cell_2_2"
+            android:background="@drawable/cell_shape"
             />
     </TableRow>
 

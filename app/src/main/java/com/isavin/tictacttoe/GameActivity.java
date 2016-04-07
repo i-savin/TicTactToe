@@ -72,7 +72,7 @@ public class GameActivity extends AppCompatActivity {
             imageView.setImageResource(game.getAiPlayer().getFigure().equals(Figure.X) ? R.drawable.x : R.drawable.o);
         }
         if (game.isFinished()) {
-            Toast.makeText(this, game.getWinner(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, game.getWinner(), Toast.LENGTH_SHORT).show();
             return;
         }
     }

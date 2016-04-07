@@ -6,14 +6,16 @@ import com.isavin.tictacttoe.core.Move;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Created by isavin on 02.04.16.
  */
 public class ArtificialIntelligence extends Player {
 
+    public static final int MAX_DEPTH = 9;
+
     private Move choice;
-    private int baseScore;
 
     public ArtificialIntelligence(Figure figure) {
         super("Skynet", figure);
@@ -21,12 +23,61 @@ public class ArtificialIntelligence extends Player {
 
     @Override
     public Move makeMove(Board board) {
-        minimax(board, figure, 0);
+        int availableMovesNumber = board.getAvailableMovesNumber();
+        alphaBeta(board, figure, 0, -availableMovesNumber-1, availableMovesNumber+1);
         return choice;
     }
 
+    private int alphaBeta(Board board, Figure figure, int depth, int alpha, int beta) {
+        if (isStateOver(board, depth)) {
+            return score(board, depth);
+        }
+        class Candidate implements Comparable<Candidate> {
+            private int score;
+            private Move move;
+
+            Candidate(int score, Move move) {
+                this.score = score;
+                this.move = move;
+            }
+
+            @Override
+            public int compareTo(Candidate another) {
+                return this.score - another.score;
+            }
+        }
+        TreeSet<Candidate> candidates = new TreeSet<>();
+        List<Move> availableMoves = board.getAvailableMoves();
+        for (int i = 0; i < availableMoves.size(); i++) {
+            Move move = availableMoves.get(i);
+            move.setFigure(figure);
+            Board possibleBoard = board.getNewState(move);
+            int score = alphaBeta(possibleBoard, figure.opposite(), depth + 1, alpha, beta);
+            if (figure == this.figure) {
+                candidates.add(new Candidate(score, move));
+                if (score > alpha) {
+                    alpha = score;
+                }
+            } else {
+                if (score < beta) {
+                    beta = score;
+                }
+            }
+            if (alpha > beta) {
+                break;
+            }
+        }
+
+        if (figure != this.figure) {
+            return beta;
+        } else {
+            choice = candidates.last().move;
+            return alpha;
+        }
+    }
+
     private int minimax(Board board, Figure figure, int depth) {
-        if (isTerminal(board, depth)) {
+        if (isStateOver(board, depth)) {
             return score(board, depth);
         }
         List<Integer> scores = new ArrayList<>();
@@ -65,16 +116,16 @@ public class ArtificialIntelligence extends Player {
         }
     }
 
-    private boolean isTerminal(Board board, int depth) {
+    private boolean isStateOver(Board board, int depth) {
         return won(board, figure) || won(board, figure.opposite()) 
-                || board.getAvailableMovesNumber() == 0 || depth == 8;
+                || board.getAvailableMovesNumber() == 0 || depth == MAX_DEPTH;
     }
 
     private int score(Board board, int depth) {
         if (won(board, figure)) {
-            return 10 - depth;
+            return MAX_DEPTH - depth;
         } else if (won(board, figure.opposite())) {
-            return depth - 10;
+            return depth - MAX_DEPTH;
         }
         return 0;
     }
