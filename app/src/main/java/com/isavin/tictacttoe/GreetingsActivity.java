@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class GreetingsActivity extends AppCompatActivity {
@@ -18,9 +19,18 @@ public class GreetingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_greetings);
         EditText nameView = (EditText) findViewById(R.id.player_name);
-        nameView.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(nameView, InputMethodManager.SHOW_IMPLICIT);
+        nameView.setCursorVisible(false);
+        nameView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    ((EditText) v).setCursorVisible(true);
+                } else {
+                    ((EditText) v).setCursorVisible(false);
+                }
+
+            }
+        });
     }
 
     public void onStartGameClicked(View view) {
@@ -40,6 +50,9 @@ public class GreetingsActivity extends AppCompatActivity {
             intent.putExtra("gameMode", radioButton.getText().toString());
         }
 
+        Spinner levelSpinner = (Spinner) findViewById(R.id.select_level);
+        String level = String.valueOf(levelSpinner.getSelectedItem());
+        intent.putExtra("level", level);
         startActivity(intent);
     }
 }

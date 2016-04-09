@@ -8,5 +8,12 @@
     <string name="x">X</string>
     <string name="o">O</string>
     <string name="start_game">Start game!</string>
+    <string name="choose_level">Choose difficulty:</string>
 
+    <string-array name="levels">
+        <item>amateur</item>
+        <item>beginner</item>
+        <item>professional</item>
+        <item>world class</item>
+    </string-array>
 </resources>

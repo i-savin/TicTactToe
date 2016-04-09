@@ -14,11 +14,16 @@ import java.util.TreeSet;
 public class ArtificialIntelligence extends Player {
 
     public static final int MAX_DEPTH = 9;
-
     private Move choice;
+    private int maxDepth;
+
+    public ArtificialIntelligence(Figure figure, int maxDepth) {
+        super("Skynet", figure);
+        this.maxDepth = maxDepth;
+    }
 
     public ArtificialIntelligence(Figure figure) {
-        super("Skynet", figure);
+        this(figure, MAX_DEPTH);
     }
 
     @Override
@@ -118,14 +123,14 @@ public class ArtificialIntelligence extends Player {
 
     private boolean isStateOver(Board board, int depth) {
         return won(board, figure) || won(board, figure.opposite()) 
-                || board.getAvailableMovesNumber() == 0 || depth == MAX_DEPTH;
+                || board.getAvailableMovesNumber() == 0 || depth == maxDepth;
     }
 
     private int score(Board board, int depth) {
         if (won(board, figure)) {
-            return MAX_DEPTH - depth;
+            return maxDepth - depth;
         } else if (won(board, figure.opposite())) {
-            return depth - MAX_DEPTH;
+            return depth - maxDepth;
         }
         return 0;
     }

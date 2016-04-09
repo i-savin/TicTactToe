@@ -28,13 +28,23 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String playerName = intent.getStringExtra("playerName");
         String gameMode = intent.getStringExtra("gameMode");
-
+        String level = intent.getStringExtra("level");
+        int depth = 0;
+        if ("amateur".equals(level)) {
+            depth = 1;
+        } else if ("beginner".equals(level)) {
+            depth = 3;
+        } else if ("professional".equals(level)) {
+            depth = 6;
+        } else if ("world class".equals(level)) {
+            depth = 9;
+        }
         String gameText = String.format("Player %s has entered the game as %s", playerName, gameMode);
         TextView textView = (TextView) findViewById(R.id.game_text_id);
         textView.setText(gameText);
 
         Human human = new Human(playerName, Figure.valueOf(gameMode));
-        ArtificialIntelligence skynet = new ArtificialIntelligence(gameMode.equalsIgnoreCase("x") ? Figure.O : Figure.X);
+        ArtificialIntelligence skynet = new ArtificialIntelligence(gameMode.equalsIgnoreCase("x") ? Figure.O : Figure.X, depth);
         Rules rules = new Rules();
         game = new GameSession(skynet, human, rules);
         rules.setGame(game);
@@ -60,7 +70,7 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         if (game.isFinished()) {
-            Toast.makeText(this, game.getWinner(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, game.getWinner(), Toast.LENGTH_SHORT).show();
             return;
         }
 
