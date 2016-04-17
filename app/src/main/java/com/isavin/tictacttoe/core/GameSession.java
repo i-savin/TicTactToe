@@ -121,12 +121,12 @@ public class GameSession {
 	 */
 	public String getWinner() {
         if (aiPlayer.getStatus() == Player.Status.WON) {
-            return aiPlayer.getFigure().name() + " won!";
+            return aiPlayer.getName();
         }
         if (humanPlayer.getStatus() == Player.Status.WON) {
-            return humanPlayer.getFigure().name() + " won!";
+            return humanPlayer.getName();
         }
-	    return "It's a draw";
+	    return null;
 	}
 }
 

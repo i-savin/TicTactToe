@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.isavin.tictacttoe.core.Difficulty;
 import com.isavin.tictacttoe.core.Figure;
 import com.isavin.tictacttoe.core.GameSession;
 import com.isavin.tictacttoe.core.Move;
@@ -15,6 +16,8 @@ import com.isavin.tictacttoe.core.Rules;
 import com.isavin.tictacttoe.core.player.ArtificialIntelligence;
 import com.isavin.tictacttoe.core.player.Human;
 import com.isavin.tictacttoe.core.player.Player;
+
+import java.io.Serializable;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -28,23 +31,13 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String playerName = intent.getStringExtra("playerName");
         String gameMode = intent.getStringExtra("gameMode");
-        String level = intent.getStringExtra("level");
-        int depth = 0;
-        if ("amateur".equals(level)) {
-            depth = 1;
-        } else if ("beginner".equals(level)) {
-            depth = 3;
-        } else if ("professional".equals(level)) {
-            depth = 6;
-        } else if ("world class".equals(level)) {
-            depth = 9;
-        }
-        String gameText = String.format("Player %s has entered the game as %s", playerName, gameMode);
+        Difficulty level = (Difficulty) intent.getSerializableExtra("level");
+        String gameText = String.format(getResources().getString(R.string.player_enter), playerName, gameMode);
         TextView textView = (TextView) findViewById(R.id.game_text_id);
         textView.setText(gameText);
 
         Human human = new Human(playerName, Figure.valueOf(gameMode));
-        ArtificialIntelligence skynet = new ArtificialIntelligence(gameMode.equalsIgnoreCase("x") ? Figure.O : Figure.X, depth);
+        ArtificialIntelligence skynet = new ArtificialIntelligence(gameMode.equalsIgnoreCase("x") ? Figure.O : Figure.X, level.getDeep());
         Rules rules = new Rules();
         game = new GameSession(skynet, human, rules);
         rules.setGame(game);
@@ -70,7 +63,11 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         if (game.isFinished()) {
-            Toast.makeText(this, game.getWinner(), Toast.LENGTH_SHORT).show();
+            String winner = game.getWinner();
+            String finishText = winner != null ?
+                    String.format(getResources().getString(R.string.won_message), winner) :
+                    getResources().getString(R.string.draw_message);
+            Toast.makeText(this, finishText, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -82,7 +79,11 @@ public class GameActivity extends AppCompatActivity {
             imageView.setImageResource(game.getAiPlayer().getFigure().equals(Figure.X) ? R.drawable.x : R.drawable.o);
         }
         if (game.isFinished()) {
-            Toast.makeText(this, game.getWinner(), Toast.LENGTH_SHORT).show();
+            String winner = game.getWinner();
+            String finishText = winner != null ?
+                    String.format(getResources().getString(R.string.won_message), winner) :
+                    getResources().getString(R.string.draw_message);
+            Toast.makeText(this, finishText, Toast.LENGTH_SHORT).show();
             return;
         }
     }

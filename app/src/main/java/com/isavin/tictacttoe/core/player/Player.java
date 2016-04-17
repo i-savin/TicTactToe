@@ -15,6 +15,7 @@ import com.isavin.tictacttoe.core.Move;
  * @version
  */
 public abstract class Player {
+
     protected String name;
     protected Figure figure;
     protected Status status;
@@ -109,6 +110,10 @@ public abstract class Player {
          * This status indicates that party is not over and player may make move.
          */
         PLAYING;
+    }
+
+    public String getName() {
+        return name;
     }
 }
 

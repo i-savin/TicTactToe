@@ -1,16 +1,16 @@
 package com.isavin.tictacttoe;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.isavin.tictacttoe.core.Difficulty;
 
 public class GreetingsActivity extends AppCompatActivity {
 
@@ -39,7 +39,7 @@ public class GreetingsActivity extends AppCompatActivity {
         EditText nameView = (EditText) findViewById(R.id.player_name);
         String playerName = nameView.getText().toString();
         if ("".equals(playerName)) {
-            Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.enter_name_warning), Toast.LENGTH_SHORT).show();
             return;
         }
         intent.putExtra("playerName", playerName);
@@ -51,8 +51,7 @@ public class GreetingsActivity extends AppCompatActivity {
         }
 
         Spinner levelSpinner = (Spinner) findViewById(R.id.select_level);
-        String level = String.valueOf(levelSpinner.getSelectedItem());
-        intent.putExtra("level", level);
+        intent.putExtra("level", Difficulty.getDifficultyById((int) levelSpinner.getSelectedItemId()));
         startActivity(intent);
     }
 }
