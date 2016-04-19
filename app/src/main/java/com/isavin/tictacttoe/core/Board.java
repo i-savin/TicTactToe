@@ -26,13 +26,7 @@ public class Board {
         newBoard.gameField[move.getRow()][move.getColumn()] = move.getFigure().toChar();
         return newBoard;
     }
-    
-    /**
-     * Initializes newly created <code>Board</code> object. Creates new 
-     * <code>char</code> array which represents abstract game field and stores
-     * values of each move. Default value (i.e. value before any moves happen)
-     * is <code>n</code>. 
-     */
+
     public Board() {
         fieldSize = DEFAULT_FIELD_SIZE;
         this.gameField = new char[fieldSize][fieldSize];
@@ -81,13 +75,6 @@ public class Board {
 	    gameField[row][column] = figure.toChar();
 	}
 
-    /**
-	 * Return values of game field cell.
-	 *
-	 * @see Move
-	 * @param move <code>Move</code> object
-	 * @return <code>char,/code> symbol
-	 */
 	public char getFieldCell(Move move) {
 	    int row = move.getRow();
 	    int column = move.getColumn();
@@ -98,10 +85,7 @@ public class Board {
 	public char[][] getGameField() {
 	    return this.gameField;
 	}
-	
-	/**
-	 * Method to get game board size. Return one number because field is square.
-	 */
+
 	public int getSize() {
 	    return this.fieldSize;
 	}

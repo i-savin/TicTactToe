@@ -29,22 +29,6 @@ public class GameSession {
     private Rules rules;
     private boolean finished;
 
-    public ArtificialIntelligence getAiPlayer() {
-        return aiPlayer;
-    }
-
-    public void setAiPlayer(ArtificialIntelligence aiPlayer) {
-        this.aiPlayer = aiPlayer;
-    }
-
-    public Human getHumanPlayer() {
-        return humanPlayer;
-    }
-
-    public void setHumanPlayer(Human humanPlayer) {
-        this.humanPlayer = humanPlayer;
-    }
-
     private ArtificialIntelligence aiPlayer;
     private Human humanPlayer;
 
@@ -128,5 +112,13 @@ public class GameSession {
         }
 	    return null;
 	}
+
+    public ArtificialIntelligence getAiPlayer() {
+        return aiPlayer;
+    }
+
+    public Human getHumanPlayer() {
+        return humanPlayer;
+    }
 }
 

@@ -15,9 +15,6 @@ import com.isavin.tictacttoe.core.Move;
 import com.isavin.tictacttoe.core.Rules;
 import com.isavin.tictacttoe.core.player.ArtificialIntelligence;
 import com.isavin.tictacttoe.core.player.Human;
-import com.isavin.tictacttoe.core.player.Player;
-
-import java.io.Serializable;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -37,17 +34,17 @@ public class GameActivity extends AppCompatActivity {
         textView.setText(gameText);
 
         Human human = new Human(playerName, Figure.valueOf(gameMode));
-        ArtificialIntelligence skynet = new ArtificialIntelligence(gameMode.equalsIgnoreCase("x") ? Figure.O : Figure.X, level.getDeep());
+        ArtificialIntelligence artificialIntelligence = new ArtificialIntelligence(gameMode.equalsIgnoreCase("x") ? Figure.O : Figure.X, level.getDepth());
         Rules rules = new Rules();
-        game = new GameSession(skynet, human, rules);
+        game = new GameSession(artificialIntelligence, human, rules);
         rules.setGame(game);
-        if (skynet.getFigure().equals(Figure.X)) {
+        if (rules.getTurnNumber(artificialIntelligence) < rules.getTurnNumber(human)) {
             Move move = game.makeAiMove();
             if (move != null) {
                 String moveId = "cell_" + move.getRow() + "_" + move.getColumn();
                 ImageView imageView = (ImageView) findViewById(getResources().getIdentifier(
                         moveId, "id", getApplicationContext().getPackageName()));
-                imageView.setImageResource(skynet.getFigure().equals(Figure.X) ? R.drawable.x : R.drawable.o);
+                imageView.setImageResource(artificialIntelligence.getFigure().equals(Figure.X) ? R.drawable.x : R.drawable.o);
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.isavin.tictacttoe.core.player;
 
 import com.isavin.tictacttoe.core.Board;
+import com.isavin.tictacttoe.core.Difficulty;
 import com.isavin.tictacttoe.core.Figure;
 import com.isavin.tictacttoe.core.Move;
 
@@ -8,12 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
-/**
- * Created by isavin on 02.04.16.
- */
+
 public class ArtificialIntelligence extends Player {
 
-    public static final int MAX_DEPTH = 9;
+    public static final int MAX_DEPTH = Difficulty.WORLD_CLASS.getDepth();
     private Move choice;
     private int maxDepth;
 

@@ -9,14 +9,14 @@ public enum Difficulty {
     PROFESSIONAL(6),
     WORLD_CLASS(9);
 
-    Difficulty(int deep) {
-        this.deep = deep;
+    Difficulty(int depth) {
+        this.depth = depth;
     }
 
-    private int deep;
+    private int depth;
 
-    public int getDeep() {
-        return deep;
+    public int getDepth() {
+        return depth;
     }
 
     public static Difficulty getDifficultyById(int id) {
