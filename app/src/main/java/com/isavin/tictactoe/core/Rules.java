@@ -1,6 +1,6 @@
-package com.isavin.tictacttoe.core;
+package com.isavin.tictactoe.core;
 
-import com.isavin.tictacttoe.core.player.Player;
+import com.isavin.tictactoe.core.player.Player;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,10 +11,9 @@ import java.util.logging.Logger;
  * party and so on.
  *
  * @author Ilia Savin
- * @version
  */
 public class Rules {
-    private final Logger logger = Logger.getLogger("com.isavin.tictacttoe");
+    private final Logger logger = Logger.getLogger("com.isavin.tictactoe");
     private static final Figure FIRST_MOVE_FIGURE = Figure.X;
 
     private GameSession game;
@@ -170,11 +169,11 @@ public class Rules {
     }
     
     private void updatePlayerStatus(Figure wonFigure, Player... players) {
-        for (int i = 0; i < players.length; i++) {
-            if (players[i].getFigure() == wonFigure) {
-                players[i].setStatus(Player.Status.WON);
+        for (Player player : players) {
+            if (player.getFigure() == wonFigure) {
+                player.setStatus(Player.Status.WON);
             } else {
-                players[i].setStatus(Player.Status.LOST);
+                player.setStatus(Player.Status.LOST);
             }
         }
     }

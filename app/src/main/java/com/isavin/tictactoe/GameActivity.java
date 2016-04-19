@@ -1,20 +1,20 @@
-package com.isavin.tictacttoe;
+package com.isavin.tictactoe;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.isavin.tictacttoe.core.Difficulty;
-import com.isavin.tictacttoe.core.Figure;
-import com.isavin.tictacttoe.core.GameSession;
-import com.isavin.tictacttoe.core.Move;
-import com.isavin.tictacttoe.core.Rules;
-import com.isavin.tictacttoe.core.player.ArtificialIntelligence;
-import com.isavin.tictacttoe.core.player.Human;
+import com.isavin.tictactoe.core.Difficulty;
+import com.isavin.tictactoe.core.Figure;
+import com.isavin.tictactoe.core.GameSession;
+import com.isavin.tictactoe.core.Move;
+import com.isavin.tictactoe.core.Rules;
+import com.isavin.tictactoe.core.player.ArtificialIntelligence;
+import com.isavin.tictactoe.core.player.Human;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -31,6 +31,7 @@ public class GameActivity extends AppCompatActivity {
         Difficulty level = (Difficulty) intent.getSerializableExtra("level");
         String gameText = String.format(getResources().getString(R.string.player_enter), playerName, gameMode);
         TextView textView = (TextView) findViewById(R.id.game_text_id);
+        assert textView != null;
         textView.setText(gameText);
 
         Human human = new Human(playerName, Figure.valueOf(gameMode));
@@ -44,6 +45,7 @@ public class GameActivity extends AppCompatActivity {
                 String moveId = "cell_" + move.getRow() + "_" + move.getColumn();
                 ImageView imageView = (ImageView) findViewById(getResources().getIdentifier(
                         moveId, "id", getApplicationContext().getPackageName()));
+                assert imageView != null;
                 imageView.setImageResource(artificialIntelligence.getFigure().equals(Figure.X) ? R.drawable.x : R.drawable.o);
             }
         }

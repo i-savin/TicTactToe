@@ -1,9 +1,11 @@
-package com.isavin.tictacttoe.core.player;
+package com.isavin.tictactoe.core.player;
 
-import com.isavin.tictacttoe.core.Board;
-import com.isavin.tictacttoe.core.Difficulty;
-import com.isavin.tictacttoe.core.Figure;
-import com.isavin.tictacttoe.core.Move;
+import android.support.annotation.NonNull;
+
+import com.isavin.tictactoe.core.Board;
+import com.isavin.tictactoe.core.Difficulty;
+import com.isavin.tictactoe.core.Figure;
+import com.isavin.tictactoe.core.Move;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +48,7 @@ public class ArtificialIntelligence extends Player {
             }
 
             @Override
-            public int compareTo(Candidate another) {
+            public int compareTo(@NonNull Candidate another) {
                 return this.score - another.score;
             }
         }

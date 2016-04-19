@@ -1,8 +1,8 @@
-package com.isavin.tictacttoe.core.player;
+package com.isavin.tictactoe.core.player;
 
-import com.isavin.tictacttoe.core.Board;
-import com.isavin.tictacttoe.core.Figure;
-import com.isavin.tictacttoe.core.Move;
+import com.isavin.tictactoe.core.Board;
+import com.isavin.tictactoe.core.Figure;
+import com.isavin.tictactoe.core.Move;
 
 /**
  * Class <code>Player</code> represents abstract game player.
@@ -12,7 +12,6 @@ import com.isavin.tictacttoe.core.Move;
  * moves. Also player has status - WON, LOST, DRAW or PLAYING.
  *
  * @author Ilia Savin
- * @version
  */
 public abstract class Player {
 
@@ -61,7 +60,7 @@ public abstract class Player {
         WON,
         DRAW,
         LOST,
-        PLAYING;
+        PLAYING
     }
 
     public String getName() {

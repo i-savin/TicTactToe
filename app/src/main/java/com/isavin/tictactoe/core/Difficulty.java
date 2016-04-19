@@ -1,8 +1,5 @@
-package com.isavin.tictacttoe.core;
+package com.isavin.tictactoe.core;
 
-/**
- * Created by isavin on 17.04.16.
- */
 public enum Difficulty {
     AMATEUR(1),
     BEGINNER(3),

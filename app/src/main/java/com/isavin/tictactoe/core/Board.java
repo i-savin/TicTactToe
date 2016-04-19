@@ -1,14 +1,12 @@
-package com.isavin.tictacttoe.core;
+package com.isavin.tictactoe.core;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Class <code>Board</code> represents game field for current game.
  *
  * @author Ilia Savin
- * @version
  */
 public class Board {
     private static final int DEFAULT_FIELD_SIZE = 3;
@@ -19,9 +17,7 @@ public class Board {
     public Board getNewState(Move move) {
         Board newBoard = new Board();
         for (int i = 0; i < fieldSize; i++) {
-            for (int j = 0; j < fieldSize; j++) {
-                newBoard.gameField[i][j] = gameField[i][j];
-            }
+            System.arraycopy(gameField[i], 0, newBoard.gameField[i], 0, fieldSize);
         }
         newBoard.gameField[move.getRow()][move.getColumn()] = move.getFigure().toChar();
         return newBoard;
@@ -51,9 +47,9 @@ public class Board {
 
     public int getAvailableMovesNumber() {
         int result = 0;
-        for (int i = 0; i < gameField.length; i++) {
+        for (char[] aGameField : gameField) {
             for (int j = 0; j < gameField.length; j++) {
-                if (gameField[i][j] == 'n') {
+                if (aGameField[j] == 'n') {
                     result++;
                 }
             }
@@ -91,10 +87,10 @@ public class Board {
 	}
 	
 	public String toString() {
-	    StringBuffer field = new StringBuffer("\n");
-        for (int i = 0; i < gameField.length; i++) {
-            for (int j = 0; j < gameField[i].length; j++) {
-                field.append("[" + gameField[i][j] + "]");
+	    StringBuilder field = new StringBuilder("\n");
+        for (char[] aGameField : gameField) {
+            for (char anAGameField : aGameField) {
+                field.append("[").append(anAGameField).append("]");
             }
             field.append("\n");
         }

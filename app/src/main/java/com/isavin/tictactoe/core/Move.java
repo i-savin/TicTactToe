@@ -1,11 +1,10 @@
-package com.isavin.tictacttoe.core;
+package com.isavin.tictactoe.core;
 
 /**
  * Class <code>Move</code> contains next move position and making move
  * player's game figure.
  *
  * @author Ilia Savin
- * @version
  */
 public class Move {
     private Figure figure;

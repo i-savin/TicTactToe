@@ -1,8 +1,8 @@
-package com.isavin.tictacttoe.core;
+package com.isavin.tictactoe.core;
 
-import com.isavin.tictacttoe.core.player.ArtificialIntelligence;
-import com.isavin.tictacttoe.core.player.Human;
-import com.isavin.tictacttoe.core.player.Player;
+import com.isavin.tictactoe.core.player.ArtificialIntelligence;
+import com.isavin.tictactoe.core.player.Human;
+import com.isavin.tictactoe.core.player.Player;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -20,10 +20,9 @@ import java.util.logging.Level;
  * @see Player
  * @see Board
  * @author Ilia Savin
- * @version
  */
 public class GameSession {
-    private final Logger logger = Logger.getLogger("com.isavin.tictacttoe");
+    private final Logger logger = Logger.getLogger("com.isavin.tictactoe");
 
     private Board board;
     private Rules rules;

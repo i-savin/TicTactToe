@@ -1,4 +1,4 @@
-package com.isavin.tictacttoe;
+package com.isavin.tictactoe;
 
 import org.junit.Test;
 

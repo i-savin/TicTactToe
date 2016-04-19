@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:configChanges="keyboardHidden|orientation|screenSize"
+    android:gravity="center"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.isavin.tictacttoe.GameActivity"
-    android:gravity="center"
-    android:layout_gravity="center"
-    android:configChanges="keyboardHidden|orientation|screenSize"
-    >
+    tools:context="com.isavin.tictactoe.GameActivity">
 
 
     <TableRow
@@ -23,99 +22,103 @@
         <TextView
             android:id="@+id/game_text_id"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </TableRow>
 
-    <TableRow android:id="@+id/first_row"
+    <TableRow
+        android:id="@+id/first_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        >
+        android:layout_gravity="center_horizontal">
 
-        <ImageView android:src="@drawable/empty"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:onClick="onMove"
+        <ImageView
             android:id="@+id/cell_0_0"
-            android:adjustViewBounds="true"
-            android:background="@drawable/cell_shape"
-            />
-        <ImageView android:src="@drawable/empty"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/cell_shape"
             android:onClick="onMove"
+            android:src="@drawable/empty" />
+
+        <ImageView
             android:id="@+id/cell_0_1"
-            android:adjustViewBounds="true"
-            android:background="@drawable/cell_shape"
-            />
-        <ImageView android:src="@drawable/empty"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/cell_shape"
             android:onClick="onMove"
+            android:src="@drawable/empty" />
+
+        <ImageView
             android:id="@+id/cell_0_2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:adjustViewBounds="true"
             android:background="@drawable/cell_shape"
-            />
+            android:onClick="onMove"
+            android:src="@drawable/empty" />
     </TableRow>
 
-    <TableRow android:id="@+id/second_row"
+    <TableRow
+        android:id="@+id/second_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-        <ImageView android:src="@drawable/empty"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:onClick="onMove"
+        <ImageView
             android:id="@+id/cell_1_0"
-            android:background="@drawable/cell_shape"
-            />
-
-        <ImageView android:src="@drawable/empty"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:background="@drawable/cell_shape"
             android:onClick="onMove"
+            android:src="@drawable/empty" />
+
+        <ImageView
             android:id="@+id/cell_1_1"
-            android:background="@drawable/cell_shape"
-            />
-
-        <ImageView android:src="@drawable/empty"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:onClick="onMove"
-            android:id="@+id/cell_1_2"
             android:background="@drawable/cell_shape"
-            />
+            android:onClick="onMove"
+            android:src="@drawable/empty" />
+
+        <ImageView
+            android:id="@+id/cell_1_2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/cell_shape"
+            android:onClick="onMove"
+            android:src="@drawable/empty" />
     </TableRow>
 
-    <TableRow android:id="@+id/third_row"
+    <TableRow
+        android:id="@+id/third_row"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-        <ImageView android:src="@drawable/empty"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:onClick="onMove"
+        <ImageView
             android:id="@+id/cell_2_0"
-            android:background="@drawable/cell_shape"
-            />
-
-        <ImageView android:src="@drawable/empty"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:background="@drawable/cell_shape"
             android:onClick="onMove"
+            android:src="@drawable/empty" />
+
+        <ImageView
             android:id="@+id/cell_2_1"
-            android:background="@drawable/cell_shape"
-            />
-
-        <ImageView android:src="@drawable/empty"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:onClick="onMove"
-            android:id="@+id/cell_2_2"
             android:background="@drawable/cell_shape"
-            />
+            android:onClick="onMove"
+            android:src="@drawable/empty" />
+
+        <ImageView
+            android:id="@+id/cell_2_2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/cell_shape"
+            android:onClick="onMove"
+            android:src="@drawable/empty" />
     </TableRow>
 
 </LinearLayout>

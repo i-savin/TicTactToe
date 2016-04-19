@@ -1,4 +1,4 @@
-package com.isavin.tictacttoe;
+package com.isavin.tictactoe;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.isavin.tictacttoe.core.Difficulty;
+import com.isavin.tictactoe.core.Difficulty;
 
 public class GreetingsActivity extends AppCompatActivity {
 

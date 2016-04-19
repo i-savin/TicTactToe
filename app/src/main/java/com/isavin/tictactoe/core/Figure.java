@@ -1,10 +1,9 @@
-package com.isavin.tictacttoe.core;
+package com.isavin.tictactoe.core;
 
 /**
  * Enumeration class <code>Figure</code> represents available figures to play.
  *
  * @author Ilia Savin
- * @version
  */
 public enum Figure {
     X,
