@@ -19,6 +19,11 @@ import com.isavin.tictactoe.core.player.Human;
 public class GameActivity extends AppCompatActivity {
 
     private GameSession game;
+    private String playerName;
+    private String gameMode;
+    private Difficulty level;
+
+    private View btnPlayAgain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,19 +31,53 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         Intent intent = getIntent();
-        String playerName = intent.getStringExtra("playerName");
-        String gameMode = intent.getStringExtra("gameMode");
-        Difficulty level = (Difficulty) intent.getSerializableExtra("level");
+        playerName = intent.getStringExtra("playerName");
+        gameMode = intent.getStringExtra("gameMode");
+        level = (Difficulty) intent.getSerializableExtra("level");
         String gameText = String.format(getResources().getString(R.string.player_enter), playerName, gameMode);
         TextView textView = (TextView) findViewById(R.id.game_text_id);
         assert textView != null;
         textView.setText(gameText);
+
+        btnPlayAgain = findViewById(R.id.btnPlayAgain);
+        btnPlayAgain.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                resetGame();
+            }
+        });
 
         Human human = new Human(playerName, Figure.valueOf(gameMode));
         ArtificialIntelligence artificialIntelligence = new ArtificialIntelligence(gameMode.equalsIgnoreCase("x") ? Figure.O : Figure.X, level.getDepth());
         Rules rules = new Rules();
         game = new GameSession(artificialIntelligence, human, rules);
         rules.setGame(game);
+        if (rules.getTurnNumber(artificialIntelligence) < rules.getTurnNumber(human)) {
+            Move move = game.makeAiMove();
+            if (move != null) {
+                String moveId = "cell_" + move.getRow() + "_" + move.getColumn();
+                ImageView imageView = (ImageView) findViewById(getResources().getIdentifier(
+                        moveId, "id", getApplicationContext().getPackageName()));
+                assert imageView != null;
+                imageView.setImageResource(artificialIntelligence.getFigure().equals(Figure.X) ? R.drawable.x : R.drawable.o);
+            }
+        }
+    }
+
+    private void resetGame() {
+        Human human = new Human(playerName, Figure.valueOf(gameMode));
+        ArtificialIntelligence artificialIntelligence = new ArtificialIntelligence(gameMode.equalsIgnoreCase("x") ? Figure.O : Figure.X, level.getDepth());
+        Rules rules = new Rules();
+        game = new GameSession(artificialIntelligence, human, rules);
+        rules.setGame(game);
+        for (int i = 0; i < game.getBoard().getSize(); i++) {
+            for (int j = 0; j < game.getBoard().getSize(); j++) {
+                int id = getResources().getIdentifier("cell_" + i + "_" + j, "id", getPackageName());
+                ImageView imageView = (ImageView) findViewById(id);
+                imageView.setImageResource(R.drawable.empty);
+            }
+        }
         if (rules.getTurnNumber(artificialIntelligence) < rules.getTurnNumber(human)) {
             Move move = game.makeAiMove();
             if (move != null) {
