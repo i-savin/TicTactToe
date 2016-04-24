@@ -13,6 +13,7 @@
     <string name="player_enter" formatted="false">Игрок %s присоединился к игре за %s</string>
     <string name="won_message">Игрок %s одержал победу в этой тяжелейшей партии</string>
     <string name="draw_message">Вам удалось свести партию к ничьей</string>
+    <string name="play_again">Начать заново</string>
 
     <string-array name="levels">
         <item>новичок</item>

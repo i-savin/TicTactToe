@@ -13,6 +13,7 @@
     <string name="player_enter" formatted="false">Player %s enters the game as %s</string>
     <string name="won_message">Player %s won</string>
     <string name="draw_message">It\'s a draw</string>
+    <string name="play_again">Play again</string>
 
     <string-array name="levels">
         <item>amateur</item>
